@@ -1,0 +1,35 @@
+name: Events exercices
+
+on:
+  push:
+    branches: [dev]
+    #3 branches : [main, dev, 'feat/feature-1'] ou branches-ignore : [staging]
+    #4 branches : 'feat**'
+    #5 paths    : '**.ts'
+    #6 paths    : 'folder/**'
+
+  pull_request:
+    types : 
+      #1 
+      [opened]
+      #2 [closed]
+
+  schedule:
+    #1 Every 5 minutes
+    - cron : '5 * * * *'
+    #2 Every 1h 30m
+    - '0 0-21/3 * * *'
+    - '30 1-22/3 * * *'
+
+jobs:
+  print-event:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print the event that triggered this workflow
+        run: |
+          echo ${{ github.event_name }}
+
+      - name: Print the current time
+        run: |
+          echo $(date)

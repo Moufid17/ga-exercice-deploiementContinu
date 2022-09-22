@@ -1,0 +1,19 @@
+name: Events exercices
+
+on: 
+  push:
+  pull_request:
+
+
+jobs:
+  first_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "First job"
+      - run: echo "First job"
+  second_job:
+    runs-on: ubuntu-latest
+    if: "github.event_name == pull_request"
+    steps:  
+      - name: "Second job"
+      - run: echo "Second job"
